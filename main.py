@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Body, Path, Query
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse , JSONResponse #There are a lot of responses like plaintext, redirect, Files (Where you can download certain files)
 from pydantic import BaseModel, Field #BaseModel= Model creation, Field= Data validation
 from typing import Optional , List
 
@@ -63,7 +63,7 @@ def create_movie(movie : Movie):
 @app.put('/movies/edit/', tags=['Movies'])
 def edit_movie(movie: Movie):
     for item in movies:
-        if item['id'] == id:
+        if item.id == id:
             item["id"] = movie.id
             item["title"] = movie.title
             item["overview"] = movie.overview
